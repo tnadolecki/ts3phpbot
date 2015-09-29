@@ -77,3 +77,8 @@ function onTextmessage(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_N
 { 
     echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
 }
+
+function onConnect(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_Node_Host $host) 
+{ 
+    echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
+}
