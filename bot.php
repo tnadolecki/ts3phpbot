@@ -77,3 +77,9 @@ function onLogin(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_Node_Ho
 { 
     echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
 }
+
+function onTimeout(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_Node_Host $host) 
+{ 
+    echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
+}
+
