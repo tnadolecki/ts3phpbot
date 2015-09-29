@@ -34,27 +34,22 @@ try
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyCliententerview", "onCliententerview"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyClientleftview", "onClientleftview"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyClientmoved", "onClientmoved"); 
-   
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyServeredited", "onServeredited"); 
-   
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyChanneledited", "onChanneledited"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyChannelmoved", "onChannelmoved"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyChannelcreated", "onChannelcreated"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyChanneldeleted", "onChanneldeleted"); 
-    
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("serverqueryConnected", "onConnect"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("serverqueryCommandStarted", "onCommand"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("serverqueryWaitTimeout", "onTimeout"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyLogin", "onLogin"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyTextmessage", "onTextmessage"); 
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyServerselected", "onSelect"); 
-   
   TeamSpeak3_Helper_Signal::getInstance()->subscribe("notifyTokencreated", "onToken"); 
 
   /* connect to server, login and get TeamSpeak3_Node_Host object by URI */ 
   $ts3 = TeamSpeak3::factory("serverquery://" . $cfg["user"] . ":" . $cfg["pass"] . "@" . $cfg["host"] . ":" . $cfg["query"] . "/?server_port=" . $cfg["voice"] . "&blocking=0"); 
    
-
   /* register for all events available */ 
   $ts3->notifyRegister("server"); 
   $ts3->notifyRegister("channel"); 
@@ -74,6 +69,11 @@ catch(Exception $e)
 } 
 
 function onTextmessage(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_Node_Host $host) 
+{ 
+    echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
+}
+
+function onLogin(TeamSpeak3_Adapter_ServerQuery_Event $event, TeamSpeak3_Node_Host $host) 
 { 
     echo "[SIGNAL] client " . $event["invokername"] . " sent textmessage: " . $event["msg"] . "\n"; 
 }
