@@ -61,7 +61,7 @@ try
     { 
     //...<some logging code>... 
     $ts3->getAdapter()->wait(); 
-    } 
+    }   
 } 
 catch(Exception $e) 
 { 
